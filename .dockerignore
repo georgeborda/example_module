@@ -1,0 +1,4 @@
+.git
+.vscode
+vendor
+# web/sites/default/files    # This have to be ignored, but I want to ommit for demo

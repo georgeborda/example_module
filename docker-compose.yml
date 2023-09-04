@@ -1,0 +1,27 @@
+version: '1.0'
+services:
+  drupal:
+    build: .
+    ports:
+      - "8080:80"
+    # volumes:
+    #   - ./web/modules:/var/www/html/modules
+    depends_on:
+      - database
+    environment:
+      APP_ENV: docker
+    restart: always
+
+  database:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: example
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+    volumes:
+      - ./backup:/docker-entrypoint-initdb.d
+    ports:
+      - "3307:3306"
+    restart: always
+
